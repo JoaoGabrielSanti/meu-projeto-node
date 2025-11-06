@@ -1,0 +1,63 @@
+<!-- Arquivo: views/usuarios.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuários</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header.ejs', { user: user, currentPage: 'usuarios' }) %>
+
+    <div class="main-content">
+        <div class="header-listagem">
+            <h1>Gestão de Usuários</h1>
+            <a href="/usuarios/novo" class="btn-incluir-grande">
+                <i class="fas fa-user-plus"></i> Novo Usuário
+            </a>
+        </div>
+
+        <section>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Login</th>
+                            <th>Cargo</th>
+                            <th>Perfil</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% usuarios.forEach(usuario => { %>
+                            <tr>
+                                <td><%= usuario.id_usuario %></td>
+                                <td><%= usuario.nome %></td>
+                                <td><%= usuario.login %></td>
+                                <td><%= usuario.cargo || '-' %></td>
+                                <td><%= usuario.perfil || '-' %></td>
+                                <td>
+                                    <a href="/usuarios/editar/<%= usuario.id_usuario %>" class="btn-editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="/usuarios/excluir/<%= usuario.id_usuario %>" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                        <button type="submit" class="btn-excluir">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <% if (usuarios.length === 0) { %>
+                <p style="text-align: center; margin-top: 20px;">Nenhum usuário cadastrado.</p>
+            <% } %>
+        </section>
+    </div>
+</body>
+</html>

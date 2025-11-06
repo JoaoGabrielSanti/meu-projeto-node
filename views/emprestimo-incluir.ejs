@@ -1,0 +1,89 @@
+<!-- Arquivo: views/emprestimo-incluir.ejs (VISUAL MELHORADO) -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Incluir Novo Empréstimo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header.ejs', { user: user, currentPage: 'emprestimos' }) %>
+
+    <div class="main-content">
+        <h1>Registrar Novo Empréstimo</h1>
+
+        <section class="form-section">
+            <form action="/emprestimos/incluir" method="POST">
+                
+                <!-- Seleção de Usuário -->
+                <div>
+                    <label for="id_usuario">Usuário Responsável:</label>
+                    <select id="id_usuario" name="id_usuario" required>
+                        <option value="">Selecione um Usuário</option>
+                        <% usuarios.forEach(usuario => { %>
+                            <option value="<%= usuario.id_usuario %>"><%= usuario.nome %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <!-- Seleção de Banco/Financeira -->
+                <div>
+                    <label for="id_banco">Banco / Financeira:</label>
+                    <select id="id_banco" name="id_banco" required>
+                        <option value="">Selecione um Banco</option>
+                        <% bancos.forEach(banco => { %>
+                            <option value="<%= banco.id_banco %>"><%= banco.nome %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                
+                <!-- Valor e Taxa -->
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label for="valor">Valor do Empréstimo (R$):</label>
+                        <input type="number" id="valor" name="valor" step="0.01" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="taxa">Taxa de Juros Anual (%):</label>
+                        <input type="number" id="taxa" name="taxa" step="0.01" required>
+                    </div>
+                </div>
+
+                <!-- Indexador e Status -->
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label for="indexador">Indexador (ex: CDI, IPCA):</label>
+                        <input type="text" id="indexador" name="indexador">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="status">Status:</label>
+                        <select id="status" name="status" required>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Quitado">Quitado</option>
+                            <option value="Pendente">Pendente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Datas -->
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label for="data_inicio">Data de Início:</label>
+                        <input type="date" id="data_inicio" name="data_inicio" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="data_fim">Data Prevista de Fim:</label>
+                        <input type="date" id="data_fim" name="data_fim">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn-salvar"><i class="fas fa-save"></i> Registrar Empréstimo</button>
+                    <a href="/emprestimos" class="btn-cancelar">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

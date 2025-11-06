@@ -1,0 +1,47 @@
+<!-- Arquivo: views/usuario-incluir.ejs (VISUAL MELHORADO) -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Incluir Novo Usuário</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header.ejs', { user: user, currentPage: 'usuarios' }) %>
+
+    <div class="main-content">
+        <h1>Incluir Novo Usuário</h1>
+
+        <!-- Aplicando a classe form-section para o visual de card elegante -->
+        <section class="form-section">
+            <form action="/usuarios/incluir" method="POST">
+                <div>
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div>
+                    <label for="login">Login (para acesso):</label>
+                    <input type="text" id="login" name="login" required>
+                </div>
+                <div>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div>
+                    <label for="cargo">Cargo (Opcional):</label>
+                    <input type="text" id="cargo" name="cargo">
+                </div>
+                <div>
+                    <label for="perfil">Perfil (Opcional):</label>
+                    <input type="text" id="perfil" name="perfil">
+                </div>
+                <div>
+                    <button type="submit" class="btn-salvar"><i class="fas fa-save"></i> Salvar Usuário</button>
+                    <a href="/usuarios" class="btn-cancelar">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

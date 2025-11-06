@@ -1,0 +1,48 @@
+<!-- Arquivo: views/dashboard.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Inclui o header e a sidebar. currentPage define o item ativo no menu. -->
+    <%- include('header.ejs', { user: user, currentPage: 'dashboard' }) %>
+
+    <div class="main-content">
+        <h1>Dashboard Principal</h1>
+
+        <section class="dashboard-stats" style="display: flex; gap: 20px;">
+            <!-- Card 1: Total de Empréstimos -->
+            <div class="stat-card" style="background-color: #007bff; color: white; padding: 20px; border-radius: 8px; flex: 1;">
+                <i class="fas fa-hand-holding-usd fa-2x"></i>
+                <h2 style="margin-top: 10px; color: white;">Total de Empréstimos</h2>
+                <p style="font-size: 1.5rem; font-weight: bold;"><%= stats.totalEmprestimos %></p>
+            </div>
+
+            <!-- Card 2: Valor Total Financiado -->
+            <div class="stat-card" style="background-color: #28a745; color: white; padding: 20px; border-radius: 8px; flex: 1;">
+                <i class="fas fa-dollar-sign fa-2x"></i>
+                <h2 style="margin-top: 10px; color: white;">Valor Total Financiado</h2>
+                <p style="font-size: 1.5rem; font-weight: bold;"><p style="font-size: 1.5rem; font-weight: bold;">R$ <%= stats.totalValor ? Number(stats.totalValor).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '0,00' %></p>...</p>
+            </div>
+
+            <!-- Card 3: Usuários Cadastrados -->
+            <div class="stat-card" style="background-color: #ffc107; color: #343a40; padding: 20px; border-radius: 8px; flex: 1;">
+                <i class="fas fa-users fa-2x"></i>
+                <h2 style="margin-top: 10px; color: #343a40;">Usuários Cadastrados</h2>
+                <p style="font-size: 1.5rem; font-weight: bold;"><%= stats.totalUsuarios %></p>
+            </div>
+
+            <!-- Card 4: Bancos / Financeiras -->
+            <div class="stat-card" style="background-color: #6c757d; color: white; padding: 20px; border-radius: 8px; flex: 1;">
+                <i class="fas fa-university fa-2x"></i>
+                <h2 style="margin-top: 10px; color: white;">Bancos Cadastrados</h2>
+                <p style="font-size: 1.5rem; font-weight: bold;"><%= stats.totalBancos %></p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

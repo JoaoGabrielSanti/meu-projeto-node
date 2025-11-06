@@ -1,0 +1,48 @@
+<!-- Arquivo: views/sidebar.ejs (CONTEÚDO FINAL) -->
+<div class="sidebar-container">
+    <div class="sidebar-header">
+        <a href="/dashboard">
+            <!-- Icone visível quando recolhido -->
+            <i class="fas fa-chart-pie logo-icon"></i> 
+            <!-- Texto visível quando expandido -->
+            <span class="icon-text">S. Financeiro</span>
+        </a>
+    </div>
+
+    <nav class="sidebar-nav">
+        <ul>
+            <li class="<%= currentPage === 'dashboard' ? 'active' : '' %>">
+                <a href="/dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="<%= currentPage === 'usuarios' ? 'active' : '' %>">
+                <a href="/usuarios">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-text">Usuários</span>
+                </a>
+            </li>
+            <li class="<%= currentPage === 'bancos' ? 'active' : '' %>">
+                <a href="/bancos">
+                    <i class="fas fa-university"></i>
+                    <span class="nav-text">Bancos / Financeiras</span>
+                </a>
+            </li>
+            <li class="<%= currentPage === 'emprestimos' ? 'active' : '' %>">
+                <a href="/emprestimos">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span class="nav-text">Empréstimos</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="sidebar-footer">
+        <!-- Ícone para Configurações no rodapé da barra lateral -->
+        <a href="/configuracoes" class="<%= currentPage === 'configuracoes' ? 'active' : '' %>">
+             <i class="fas fa-cog"></i>
+             <span class="nav-text">Configurações</span>
+        </a>
+    </div>
+</div>

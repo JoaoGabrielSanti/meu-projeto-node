@@ -1,0 +1,39 @@
+<!-- Arquivo: views/banco-editar.ejs (VISUAL MELHORADO) -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Banco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header.ejs', { user: user, currentPage: 'bancos' }) %>
+
+    <div class="main-content">
+        <h1>Editar Banco: <%= banco.nome %></h1>
+
+        <!-- Aplicando a classe form-section para o visual de card elegante -->
+        <section class="form-section">
+            <form action="/bancos/editar/<%= banco.id_banco %>" method="POST">
+                <div>
+                    <label for="nome">Nome do Banco / Financeira:</label>
+                    <input type="text" id="nome" name="nome" value="<%= banco.nome %>" required>
+                </div>
+                <div>
+                    <label for="cnpj">CNPJ (Opcional):</label>
+                    <input type="text" id="cnpj" name="cnpj" value="<%= banco.cnpj || '' %>">
+                </div>
+                <div>
+                    <label for="contato">Contato Principal (Opcional):</label>
+                    <input type="text" id="contato" name="contato" value="<%= banco.contato || '' %>">
+                </div>
+                <div>
+                    <button type="submit" class="btn-salvar"><i class="fas fa-save"></i> Salvar Alterações</button>
+                    <a href="/bancos" class="btn-cancelar">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

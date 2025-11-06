@@ -1,0 +1,71 @@
+<!-- Arquivo: views/emprestimos.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Empréstimos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header.ejs', { user: user, currentPage: 'emprestimos' }) %>
+
+    <div class="main-content">
+        <div class="header-listagem">
+            <h1>Gestão de Empréstimos</h1>
+            <a href="/emprestimos/novo" class="btn-incluir-grande">
+                <i class="fas fa-file-invoice-dollar"></i> Novo Empréstimo
+            </a>
+        </div>
+
+        <section>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuário</th>
+                            <th>Banco/Financeira</th>
+                            <th>Valor</th>
+                            <th>Taxa (%)</th>
+                            <th>Indexador</th>
+                            <th>Status</th>
+                            <th>Início</th>
+                            <th>Fim</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% emprestimos.forEach(emp => { %>
+                            <tr>
+                                <td><%= emp.id_emprestimo %></td>
+                                <td><%= emp.nome_usuario %></td>
+                                <td><%= emp.nome_banco %></td>
+                                <td>R$ <%= Number(emp.valor).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.') %></td>
+                                <td><%= Number(emp.taxa).toFixed(2).replace('.', ',') %></td>
+                                <td><%= emp.indexador || '-' %></td>
+                                <td><%= emp.status %></td>
+                                <td><%= emp.data_inicio ? new Date(emp.data_inicio).toLocaleDateString('pt-BR') : '-' %></td>
+                                <td><%= emp.data_fim ? new Date(emp.data_fim).toLocaleDateString('pt-BR') : '-' %></td>
+                                <td>
+                                    <a href="/emprestimos/editar/<%= emp.id_emprestimo %>" class="btn-editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="/emprestimos/excluir/<%= emp.id_emprestimo %>" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir este empréstimo?');">
+                                        <button type="submit" class="btn-excluir">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <% if (emprestimos.length === 0) { %>
+                <p style="text-align: center; margin-top: 20px;">Nenhum empréstimo registrado.</p>
+            <% } %>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!-- Arquivo: views/header.ejs (CONTEÚDO FINAL) -->
+<header class="main-header">
+    <div class="header-content">
+        <div class="user-profile">
+            <span>Olá, <%= user.nome %></span>
+            <div class="profile-dropdown">
+                <i class="fas fa-user-circle"></i>
+                <div class="dropdown-content">
+                    <a href="/configuracoes"><i class="fas fa-cog"></i> Configurações</a>
+                    <a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Inclui a barra lateral -->
+<%- include('sidebar.ejs', { currentPage: currentPage }) %>
+
+<!-- Script que lida com o hover da sidebar (Mantido no header para facilidade) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.querySelector('.sidebar-container');
+        const content = document.querySelector('.main-content');
+        const header = document.querySelector('.main-header');
+
+        // Larguras definidas no CSS: 60px (recolhida) e 200px (expandida)
+        const retractedWidth = '60px';
+        const expandedWidth = '200px';
+        
+        // Aplica o margin inicial para o estado recolhido
+        if (content) content.style.marginLeft = retractedWidth;
+        if (header) header.style.marginLeft = retractedWidth;
+
+        // Função para expandir a sidebar no hover
+        sidebar.addEventListener('mouseenter', () => {
+            sidebar.classList.add('expanded');
+            if (content) content.style.marginLeft = expandedWidth;
+            if (header) header.style.marginLeft = expandedWidth;
+        });
+
+        // Função para recolher a sidebar ao sair
+        sidebar.addEventListener('mouseleave', () => {
+            sidebar.classList.remove('expanded');
+            if (content) content.style.marginLeft = retractedWidth; 
+            if (header) header.style.marginLeft = retractedWidth;
+        });
+    });
+</script>

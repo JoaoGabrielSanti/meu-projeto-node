@@ -1,0 +1,32 @@
+<!-- Arquivo: views/login.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Sistema Financeiro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="login-body">
+    <div class="login-form">
+        <h2>Acesso ao Sistema</h2>
+        <form action="/login-action" method="POST">
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            
+            <div>
+                <label for="login" style="display: none;">Login</label>
+                <input type="text" id="login" name="login" placeholder="Login de Usuário" required>
+            </div>
+            
+            <div>
+                <label for="senha" style="display: none;">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+            </div>
+            
+            <button type="submit" class="btn-salvar"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

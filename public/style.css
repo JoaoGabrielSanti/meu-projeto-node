@@ -1,0 +1,354 @@
+/* ARQUIVO: public/style.css (VERSÃO FINAL COM TEMA CINZA E SIDEBAR) */
+
+/* === ESTILOS GERAIS === */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f9; 
+    color: #343a40;
+    margin: 0;
+    padding: 0; 
+}
+h1, h2 {
+    color: #343a40;
+    margin-top: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* === CARD DE FORMULÁRIOS E SEÇÕES (.form-section) === */
+.form-section {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    max-width: 600px; /* Limita a largura dos formulários para melhor visualização */
+}
+.form-section div {
+    margin-bottom: 15px;
+}
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.form-section input[type="text"],
+.form-section input[type="password"],
+.form-section input[type="number"],
+.form-section input[type="date"],
+.form-section select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.form-section input:focus, .form-section select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* === TABELAS === */
+.table-responsive {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Adicionado para arredondar as bordas da tabela */
+    overflow: hidden; /* Garante que os cantos arredondados funcionem */
+}
+table thead th {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+}
+table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* === BOTÕES GERAIS === */
+.header-listagem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.btn-incluir-grande, .btn-incluir {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.btn-incluir-grande i, .btn-incluir i {
+    margin-right: 8px;
+}
+.btn-incluir-grande:hover, .btn-incluir:hover {
+    background-color: #218838;
+}
+.btn-editar {
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.2s;
+}
+.btn-excluir {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-salvar {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-salvar:hover {
+    background-color: #0056b3;
+}
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+/* ========================================================= */
+/* === PÁGINA DE LOGIN === */
+/* ========================================================= */
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f9; 
+    margin: 0;
+    padding: 20px;
+}
+.login-form {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+.login-form h2 {
+    margin-bottom: 30px;
+    color: #343a40; 
+    font-size: 2rem;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.login-form .btn-salvar {
+    width: 100%;
+    background-color: #343a40; 
+    color: white;
+    padding: 12px;
+    font-size: 1.1rem;
+}
+.login-form .btn-salvar:hover {
+    background-color: #495057;
+}
+.error {
+    color: #dc3545;
+    background-color: #fff0f3;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* ========================================================= */
+/* === BARRA LATERAL (SIDEBAR) E LAYOUT PRINCIPAL === */
+/* ========================================================= */
+.sidebar-container {
+    width: 60px; 
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #343a40; /* Cinza Escuro */
+    color: #f8f9fa; 
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+    padding-top: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+}
+.sidebar-container.expanded {
+    width: 200px; 
+}
+.sidebar-header {
+    padding: 0 15px 20px 15px;
+    text-align: center;
+    border-bottom: 1px solid #495057; 
+}
+.sidebar-header a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+.sidebar-header a .logo-icon {
+    display: block; /* Visível por padrão */
+}
+.sidebar-container.expanded .sidebar-header a .logo-icon {
+    display: none; /* Esconde o ícone quando expandido */
+}
+.sidebar-container .sidebar-header a .icon-text {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none; 
+}
+.sidebar-container.expanded .sidebar-header a .icon-text {
+    opacity: 1; 
+    display: block;
+}
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-nav li a, .sidebar-footer a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #adb5bd; 
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 1rem;
+}
+.sidebar-nav li a i, .sidebar-footer a i {
+    font-size: 1.2rem;
+    width: 30px; 
+    text-align: center;
+}
+.nav-text {
+    white-space: nowrap; 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding-left: 10px;
+}
+.sidebar-container.expanded .nav-text {
+    opacity: 1; 
+}
+.sidebar-nav li a:hover,
+.sidebar-footer a:hover {
+    background-color: #495057; 
+    color: #ffffff;
+}
+.sidebar-nav li.active a,
+.sidebar-footer a.active {
+    background-color: #007bff; 
+    color: #ffffff;
+    font-weight: 600;
+}
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #495057;
+}
+.main-content {
+    margin-left: 60px; /* Espaço para a sidebar recolhida */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+/* === ESTILOS DO HEADER SUPERIOR (Perfil) === */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    padding: 10px 20px;
+    margin-left: 60px; 
+    transition: margin-left 0.3s ease;
+}
+.header-content {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+.user-profile {
+    position: relative;
+    cursor: pointer;
+    font-weight: 600;
+    color: #343a40;
+}
+.profile-dropdown {
+    display: inline-block;
+    padding: 5px 10px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+.user-profile:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content a {
+    color: #343a40;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
