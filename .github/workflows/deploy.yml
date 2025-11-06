@@ -1,44 +1,25 @@
-# Nome que aparecerá na aba 'Actions' do GitHub
-name: Deploy Automatico na Locaweb
+steps:
+# 1. Checkout do código (Baixa o código do GitHub)
+- uses: actions/checkout@v3
 
-# Gatilho: Roda sempre que houver um push para a branch 'main'
-on: 
-  push:
-    branches:
-      - main # Garante que só roda quando a branch 'main' é atualizada
+# 2. Configurar Node.js e instalar dependências
+# Necessário para o seu projeto Express/Node rodar "npm install"
+- name: Configurar e Instalar Dependências Node.js
+  uses: actions/setup-node@v3
+  with:
+    node-version: '18'
 
-jobs:
-  deploy:
-    name: Publicação do Projeto Node.js
-    runs-on: ubuntu-latest
-    
-    steps:
-    # 1. Baixa seu código do GitHub para a máquina virtual de deploy
-    - uses: actions/checkout@v2
+- name: Instalar Dependências
+  run: npm install
 
-    # 2. Configura e instala as dependências do Node.js
-    - name: Configura Node.js (Versão 18)
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18' 
-        
-    - name: Instala dependências (npm install)
-      run: npm install
-      
-    # 3. Envia os arquivos instalados (incluindo node_modules) para o servidor
-    - name: FTP Deploy Locaweb
-      uses: locaweb/ftp-deploy@1.0.0
-      with:
-        # Credenciais que serão definidas no GitHub
-        host: ${{ secrets.FTP_HOST }} 
-        user: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASS }}
-        
-        # localDir: A raiz do projeto (onde está o package.json)
-        localDir: "." 
-        
-        # remoteDir: O caminho raiz da sua hospedagem (conforme sua imagem b09949.png)
-        remoteDir: "/home/sistemaemprestim1/" 
-        
-        # Ativa a segurança na conexão, resolvendo erros 530
-        forceSsl: true
+# 3. FTP Deploy Locaweb
+# localDir: "./" é usado para projetos Node.js/Express (raiz do projeto)
+# Certifique-se de que o arquivo .ftpignore existe para excluir node_modules.
+- name: FTP Deploy Locaweb (Corrigido para FTP Comum)
+  uses: locaweb/ftp-deploy@1.0.0
+  with:
+    host: ${{ secrets.HOST }} 
+    user: ${{ secrets.USER }}
+    password: ${{ secrets.PASS }}
+    localDir: "./" 
+    protocol: "ftp"
